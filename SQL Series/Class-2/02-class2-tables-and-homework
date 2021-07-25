@@ -1,0 +1,246 @@
+Getting an error when you put this into DB-Fiddle? Make sure you select POSTGRESQL 13 from at the top left. It defaults to  MySQL, so be sure to change it
+
+--director table
+
+CREATE TABLE IF NOT EXISTS "director" (
+    "id" INT,
+    "name" TEXT,
+    "birth_year" INT
+);
+INSERT INTO "director" VALUES
+    (1,'Alfred Hitchcock',1899),
+    (2,'Steven Spielberg',1946),
+    (3,'Woody Allen',1935),
+    (4,'Quentin Tarantino',1963),
+    (5,'Pedro Almodóvar',1949);
+
+--movie table
+
+CREATE TABLE IF NOT EXISTS "movie" (
+    "id" INT,
+    "title" TEXT,
+    "production_year" INT,
+    "director_id" INT
+);
+INSERT INTO "movie" VALUES
+    (1,'Psycho',1960,1),
+    (2,'Saving Private Ryan',1998,2),
+    (3,'Schindler''s List',1993,2),
+    (4,'Midnight in Paris',2011,3),
+    (5,'Sweet and Lowdown',1993,3),
+    (6,'Pulp fiction',1994,4),
+    (7,'Talk to her',2002,5),
+    (8,'The skin I live in',2011,5);
+
+
+-- skating table
+
+CREATE TABLE IF NOT EXISTS "skating" (
+    "d" INT,
+    "person" TEXT,
+    "country" TEXT,
+    "year" INT,
+    "place" INT
+);
+INSERT INTO "skating" VALUES
+    (1,'Clara Hughes','Canada',2006,1),
+    (2,'Christa Luding-Rothenburger','East Germany',1988,1),
+    (3,'Michel Muder','Netherlands',2014,1),
+    (4,'Anni Friesinger','Germany',2002,1),
+    (5,'Keiichiro Nagashima','Japan',2014,2),
+    (6,'Lee Kang-seok','Korea',2006,3),
+    (7,'Hiroyasu Shimizu','Japan',1998,1),
+    (8,'Uwe Jens-Mey','Germany',1992,1);
+
+-- cycling table
+
+CREATE TABLE IF NOT EXISTS "cycling" (
+    "id" INT,
+    "person" TEXT,
+    "country" TEXT,
+    "year" INT,
+    "place" INT
+);
+INSERT INTO "cycling" VALUES
+    (1,'Clara Hughes','Canada',1996,3),
+    (2,'Christa Luding-Rothenburger','East Germany',1988,2),
+    (3,'Lizzie Armitstead','Great Britain',2012,2),
+    (4,'Guo Shuang','China',2008,3),
+    (5,'Sabine Spitz','Germany',2004,3),
+    (6,'Paola Pezzo','Italy',1996,1),
+    (7,'Lori-Ann Muenzer','Canada',2004,1),
+    (8,'Oksana Grishina','Russia',2000,2);
+
+
+
+
+
+
+
+
+--tables for homework
+
+--artist table
+
+CREATE TABLE IF NOT EXISTS "artist" (
+    "id" INT,
+    "name" TEXT,
+    "birth_year" INT,
+    "death_year" INT,
+    "artistic_field" TEXT
+);
+
+INSERT INTO "artist" VALUES
+    (1,'Vincent van Gogh',1853,1890,'painting'),
+    (2,'Peter Rubens',1577,1640,'painting'),
+    (3,'Jan Van Eyck',1390,1441,'painting'),
+    (4,'Auguste Rodin',1840,1917,'sculpture'),
+    (5,'Claude Monet',1840,1926,'painting'),
+    (6,'Donatello',1386,1466,'sculpture'),
+    (7,'Pablo Picasso',1881,1973,'painting'),
+    (8,'Michelangelo Buonarroti',1475,1564,'sculpture'),
+    (9,'Diego Velazquez',1599,1660,'painting'),
+    (10,'Giambologna',1529,1608,'sculpture'),
+    (11,'Gian Lorenzo Bernini',1658,1680,'sculpture'),
+    (12,'Constantin Brancusi',1876,1957,'sculpture'),
+    (13,'Leonardo da Vinci',1452,1519,'painting'),
+    (14,'Anonymous Artist',1101,1200,null);
+
+--muesum 
+
+CREATE TABLE IF NOT EXISTS "museum" (
+    "id" INT,
+    "name" TEXT,
+    "country" TEXT
+);
+INSERT INTO "museum" VALUES
+    (1,'Metropolitan Museum','USA'),
+    (2,'Wallraf-Richartz-Museum','Germany'),
+    (3,'Neue Pinakothek','Germany'),
+    (4,'Galleria Nazionale d''Arte Moderna','Italy'),
+    (5,'Museum Jana Pawła II','Poland'),
+    (6,'National Gallery','UK'),
+    (7,'Musee Rodin','France'),
+    (8,'Musee d''Orsay','France'),
+    (9,'Museo Nazionale del Bargello','Italy'),
+    (10,'Louvre Museum','France'),
+    (11,'Museum of Modern Art','USA'),
+    (12,'Tate Museum','UK'),
+    (13,'Galleria dell''Accademia','Italy'),
+    (14,'Prado Museum','Spain'),
+    (15,'Galleria Borghese','Italy'),
+    (16,'Palazzo di Spagna','Italy'),
+    (17,'Philadelphia Museum of Art','USA'),
+    (18,'Guggenheim Museum','USA'),
+    (19,'The State Russian Museum','Russia');
+
+-- piece_of_art
+
+CREATE TABLE IF NOT EXISTS "piece_of_art" (
+    "id" INT,
+    "name" TEXT,
+    "artist_id" INT,
+    "museum_id" TEXT
+);
+INSERT INTO "piece_of_art" VALUES
+    (1,'Fritillaries',1,null),
+    (2,'Lying Cow',1,null),
+    (3,'View of the Sea at Scheveningen',1,null),
+    (4,'Cypresses',1,'1'),
+    (5,'Landscape with Snow',1,'1'),
+    (6,'Cottage with Trees',1,'2'),
+    (7,'Weaver Near an Open Window',1,'3'),
+    (8,'L''Arlesienne',1,'4'),
+    (9,'Farmhouses Among Trees',1,'5'),
+    (10,'Samson and Deliah',2,'6'),
+    (11,'Man in a Red Turban',3,'6'),
+    (12,'Arnolfini Portrait',3,'6'),
+    (13,'The Thinker',4,'7'),
+    (14,'The Kiss',4,'7'),
+    (15,'The Gates of Hell',4,'8'),
+    (16,'Poppy Field',5,'8'),
+    (17,'Gare Sainte-Lazare',5,'8'),
+    (18,'La Grenouillere',5,'1'),
+    (19,'David',6,'9'),
+    (20,'Mary Magdalene',6,'9');
+
+
+
+
+EXERCISES
+
+1. Select the names of all pieces of art together with the names of the museums that house them in their collections, as well as the countries in which these museums are located. Show also pieces of art which were lost.
+
+2. For each artist who lived for more than 50 years and was born after the year 1800, show their name and the name of the pieces of art they created. Rename columns to artist_name and piece_name, respectively.
+
+3. Show the names of all pieces of art together with the names of their creators and the names of the museums that house these pieces of art in their collections. Omit lost works and pieces of art with an unknown artist. Name the columns piece_of_art_name, artist_name, and museum_name.
+
+4. Check whether there are any pieces that were created by unknown artists. Show the names of these pieces together with the names of the museums that house the pieces in their collections.
+
+5. For each piece of art that is housed in either an American (USA) or Italian (Italy) museum, show both its name (as piece_name) and the name of its artist (as artist_name).
+
+
+
+
+
+ANSWERS
+
+1.
+
+SELECT
+  poa.name,
+  m.name,
+  m.country
+FROM piece_of_art poa
+LEFT JOIN museum m
+  ON poa.museum_id = m.id
+
+2. 
+
+SELECT
+  a.name AS artist_name,
+  poa.name AS piece_name
+FROM artist a
+JOIN piece_of_art poa
+  ON a.id = poa.artist_id
+WHERE death_year - birth_year > 50
+  AND birth_year > 1800
+
+3.
+
+SELECT
+  a.name AS artist_name,
+  m.name AS museum_name,
+  poa.name AS piece_of_art_name
+FROM museum m
+JOIN piece_of_art poa
+  ON m.id = poa.museum_id
+JOIN artist a
+  ON a.id = poa.artist_id
+
+
+4.
+
+SELECT
+  poa.name,
+  m.name
+FROM piece_of_art poa
+JOIN museum m
+  ON poa.museum_id = m.id
+WHERE poa.artist_id IS NULL
+
+5.
+
+SELECT
+  a.name AS artist_name,
+  poa.name AS piece_name
+FROM artist a
+JOIN piece_of_art poa
+  ON poa.artist_id = a.id
+JOIN museum m
+  ON m.id = poa.museum_id
+WHERE m.country IN ('USA', 'Italy')
+
+
+
+

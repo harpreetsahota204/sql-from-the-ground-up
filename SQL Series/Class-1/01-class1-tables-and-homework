@@ -1,0 +1,128 @@
+-- car table
+
+CREATE TABLE "car" (
+    "vin" TEXT,
+    "brand" TEXT,
+    "model" TEXT,
+    "price" NUMERIC,
+    "production_year" INT
+);
+INSERT INTO "car" VALUES
+    ('LJCPCBLCX14500264','Ford','Focus',8000,2005),
+    ('WPOZZZ79ZTS372128','Ford','Fusion',12500,2008),
+    ('JF1BR93D7BG498281','Toyota','Avensis',11300,1999),
+    ('KLATF08Y1VB363636','Volkswagen','Golf',3270,1992),
+    ('1M8GDM9AXKP042788','Volkswagen','Golf',13000,2010),
+    ('1HGCM82633A004352','Volkswagen','Jetta',6420,2003),
+    ('1G1YZ23J9P5800003','Fiat','Punto',5700,1999),
+    ('GS723HDSAK2399002','Opel','Corsa',null,200707);
+
+
+-- car table
+
+CREATE TABLE IF NOT EXISTS "cat" (
+    "id" INT,
+    "name" TEXT,
+    "breed" TEXT,
+    "coloration" TEXT,
+    "age" INT,
+    "sex" TEXT,
+    "fav_toy" TEXT
+);
+INSERT INTO "cat" VALUES
+    (1,'Micky','Maine Coon','tortoiseshell',3,'M','ball - red'),
+    (2,'Nine','Ragamuffin','cream',2,'M','ball - green'),
+    (3,'Carmen','Persian','brown',2,'F','toy mouse'),
+    (4,'Luna','Abyssinian','tortoiseshell',12,'F','teaser'),
+    (5,'Bella','Siamese','red',15,'F','teaser'),
+    (6,'Tiger','Maine Coon','black',12,'M','toy mouse'),
+    (7,'Shadow','Ragdoll','white',16,'M','null'),
+    (8,'Oreo','Siamese','red',4,'F','toy mouse'),
+    (9,'Gizmo','Ragdoll','blue',3,'M','laser'),
+    (10,'Lucy','Persian','blue',7,'F','teaserer');
+
+
+
+Assignments:
+
+1. Select the name, breed, and coloration for every cat that is younger than five years old.
+
+2. Select the id and name for every cat that is either younger than five years old or older than ten years old, and that is of the Ragdoll breed.
+
+3. Select all data for cats whose breed starts with an 'R', favourite toy starts with the word 'ball', and coloration name ends with an 'm'.
+
+
+4. Select the names of all male cats that don't have a favorite toy – that is, the value of the field fav_toy is NULL for these cats.
+
+5. Select all data for cats that: are older than 10 years, are either Ragdoll or Abyssinian, and have a known favorite toy.
+
+6. Select the id, name, breed and coloration of all cats that: are females, like teaser toys, not of the Persian or Siamese breeds, and are twelve years old or older.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANSWERS:
+
+1.
+
+SELECT
+  name,
+  breed,
+  coloration
+FROM cat
+WHERE age < 5;
+
+2.
+
+SELECT
+  id,
+  name
+FROM cat
+WHERE (age < 5 OR age > 10)
+  AND breed = 'Ragdoll';
+
+  3. 
+
+SELECT *
+FROM cat
+WHERE breed LIKE 'R%'
+  AND fav_toy LIKE 'ball%'
+  AND coloration LIKE '%m'
+
+ 4. 
+
+SELECT name
+FROM cat
+WHERE sex = 'M'
+  AND fav_toy IS NULL;
+
+5.
+
+SELECT *
+FROM cat
+WHERE age > 10
+  AND (breed = 'Ragdoll' OR breed = 'Abyssinian')
+  AND fav_toy IS NOT NULL;
+
+6. 
+
+SELECT 
+  id,
+  name,
+  breed,
+  coloration
+FROM cat
+WHERE sex = 'F'
+  AND fav_toy = 'teaser'
+  AND (breed NOT LIKE 'Persian' AND breed NOT LIKE 'Siamese')
+  AND age >= 12
+
